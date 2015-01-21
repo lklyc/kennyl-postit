@@ -3,9 +3,9 @@
 <% @post.each do |post| %>
   <div class='row'>
     <div class='span8 well'>
-      <%= render post.categories # calling post.categories, rails looks for _category.html.erb by default, and passes in a collection of category objects %> 
+      <%= render post.categories %> 
       <h4><%= link_to post.title, post.url %></h4>
-      <p><%= post.description %></p>
+      <p> <%= post.description %> </p>
       <p>
         <span class='quiet'>posted by </span><%= post.creator.username %>
         <small>at <%= post.created_at %></small>
