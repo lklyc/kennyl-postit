@@ -1,14 +1,9 @@
-<p class='lead'>
-  All Posts
-  <hr/>
-</p>
+<%= render 'shared/content_title', title: 'All Posts' %>
 
 <% @post.each do |post| %>
   <div class='row'>
     <div class='span8 well'>
-      <% post.categories.each do |category| %>
-        <span class='badge'><%= category.name %></span>
-      <% end %>
+      <%= render post.categories # calling post.categories, rails looks for _category.html.erb by default, and passes in a collection of category objects %> 
       <h4><%= link_to post.title, post.url %></h4>
       <p><%= post.description %></p>
       <p>
