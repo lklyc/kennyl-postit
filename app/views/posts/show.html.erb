@@ -1,6 +1,8 @@
-<p class='pull-right'>
-  [<%= link_to 'edit', edit_post_path(@post)%>]
-</p>
+<% if logged_in? %>
+  <p class='pull-right'>
+    [<%= link_to 'edit', edit_post_path(@post)%>]
+  </p>
+<% end %>
 
 <p>
   <%= render @post.categories %>
