@@ -1,4 +1,4 @@
-<% if logged_in? %>
+<% if logged_in? && current_user.id == @post.creator.id %>
   <p class='pull-right'>
     [<%= link_to 'edit', edit_post_path(@post)%>]
   </p>
@@ -13,6 +13,10 @@
 <p>
 <%= @post.description %>
 <hr/>
+
+  <span class='quiet'>posted by </span><%= @post.creator.username %>
+  <small>at <%= display_datetime(@post.created_at) %></small>
+
 </p>
 
 <%= form_for [@post, @comment] do |f| %>

@@ -7,7 +7,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      flash[:notice] = "You are registered."
+      session[:user_id] = @user.id # login the user
+      flash[:notice] = "Welcome, #{@user.username}! You are now logged in."
       redirect_to root_path
     else
       render :new
