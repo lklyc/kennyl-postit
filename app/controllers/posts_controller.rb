@@ -29,6 +29,11 @@ class PostsController < ApplicationController
   end
 
   def edit
+
+    if current_user != @post.creator
+      flash[:error] = "You do not have permission to edit this post."
+      redirect_to root_path
+    end
   end
 
   def update
