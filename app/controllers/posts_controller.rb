@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :require_user, except: [:index, :show]
 
   def index
-    @post = Post.all
+    @post = Post.all.sort_by{|x| x.total_votes}.reverse
   end
 
   def show
@@ -53,6 +53,8 @@ class PostsController < ApplicationController
     else
       flash[:error] = "There was an issue, vote invalid."
     end
+
+    
 
     redirect_to :back
 
