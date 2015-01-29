@@ -48,15 +48,19 @@ class PostsController < ApplicationController
   def vote
     @vote = Vote.create(voteable: @post, creator: current_user, vote: params[:vote])
 
-    if @vote.valid?
-      flash[:notice] = "Voted."
-    else
-      flash[:error] = "There was an issue, vote invalid."
+    respond_to do |format|
+      format.html {
+        if @vote.valid?
+          flash[:notice] = "Voted."
+        else
+          flash[:error] = @vote.errors.full_messages.first
+        end
+        redirect_to :back
+      }
+      format.js {}
     end
 
-    
 
-    redirect_to :back
 
   end
 
